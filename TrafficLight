@@ -1,0 +1,46 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class TrafficLight extends JPanel {
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+
+        // Set background color (sky blue)
+        g2d.setColor(new Color(135, 206, 250)); // Sky blue
+        g2d.fillRect(0, 0, getWidth(), getHeight());
+
+        // Draw the traffic light pole (gray)
+        g2d.setColor(Color.darkGray);
+        g2d.fillRect(145, 50, 10, 200); // Pole body
+        g2d.fillRect(135, 245, 30, 20); // Pole base
+
+        // Draw the red light (red)
+        g2d.setColor(Color.red);
+        g2d.fillOval(135, 55, 30, 30);
+
+        // Draw the yellow light (yellow)
+        g2d.setColor(Color.yellow);
+        g2d.fillOval(135, 105, 30, 30);
+
+        // Draw the green light (green)
+        g2d.setColor(Color.green);
+        g2d.fillOval(135, 155, 30, 30);
+
+        // Draw the black borders around lights
+        g2d.setColor(Color.black);
+        g2d.drawOval(135, 55, 30, 30); // Red light border
+        g2d.drawOval(135, 105, 30, 30); // Yellow light border
+        g2d.drawOval(135, 155, 30, 30); // Green light border
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Traffic Light");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 300);
+        frame.add(new TrafficLight());
+        frame.setVisible(true);
+    }
+}

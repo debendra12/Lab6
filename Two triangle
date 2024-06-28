@@ -1,0 +1,29 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class TwoTriangles extends JPanel {
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+
+        // Set background color
+        g2d.setColor(Color.white);
+        g2d.fillRect(0, 0, getWidth(), getHeight());
+
+        // Set triangle colors
+        g2d.setColor(Color.blue);
+
+        // First triangle (pointing upwards)
+        int[] xPointsUp = {100, 200, 150};
+        int[] yPointsUp = {100, 100, 50};
+        g2d.fillPolygon(xPointsUp, yPointsUp, 3);
+
+        // Second triangle (pointing downwards)
+        int[] xPointsDown = {100, 200, 150};
+        int[] yPointsDown = {150, 150, 200};
+        g2d.fillPolygon(xPointsDown, yPointsDown, 3);
+    }
+
+    public static void main(String[] args)

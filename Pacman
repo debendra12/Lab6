@@ -1,0 +1,50 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class PacManFace extends JPanel {
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+
+        // Set background color
+        g2d.setColor(Color.black);
+        g2d.fillRect(0, 0, getWidth(), getHeight());
+
+        // Draw Pac-Man body (yellow circle)
+        g2d.setColor(Color.yellow);
+        int pacmanSize = 100; // Diameter of Pac-Man
+        g2d.fillArc(50, 50, pacmanSize, pacmanSize, 45, 270); // Draw an arc (circle sector) for Pac-Man
+
+        // Draw Pac-Man mouth (black)
+        g2d.setColor(Color.black);
+        g2d.fillArc(50, 50, pacmanSize, pacmanSize, 45 + 45, 270 - 90); // Draw an arc to cut out a slice for the mouth
+
+        // Draw Pac-Man eye (white)
+        g2d.setColor(Color.white);
+        int eyeSize = 20; // Diameter of the eye
+        g2d.fillOval(75, 75, eyeSize, eyeSize); // Draw the eye as a small white circle
+
+        // Draw dots around Pac-Man (representing points)
+        g2d.setColor(Color.white);
+        int dotSize = 5; // Diameter of each dot
+        drawDot(g2d, 80, 110, dotSize); // Top dot
+        drawDot(g2d, 95, 125, dotSize); // Right dot
+        drawDot(g2d, 80, 140, dotSize); // Bottom dot
+        drawDot(g2d, 65, 125, dotSize); // Left dot
+    }
+
+    // Helper method to draw a single dot
+    private void drawDot(Graphics2D g2d, int x, int y, int size) {
+        g2d.fillOval(x, y, size, size);
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Pac-Man Face");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(200, 200);
+        frame.add(new PacManFace());
+        frame.setVisible(true);
+    }
+}

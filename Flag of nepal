@@ -1,0 +1,54 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class FlagOfNepal extends JPanel {
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+
+        // Set background color to white
+        g2d.setColor(Color.white);
+        g2d.fillRect(0, 0, getWidth(), getHeight());
+
+        // Red color for the flag's parts
+        g2d.setColor(Color.red);
+
+        // Draw the top triangular part of the flag
+        int[] xPointsTop = {50, 400, 225};
+        int[] yPointsTop = {50, 50, 250};
+        g2d.fillPolygon(xPointsTop, yPointsTop, 3);
+
+        // Draw the bottom triangular part of the flag
+        int[] xPointsBottom = {50, 400, 225};
+        int[] yPointsBottom = {250, 250, 50};
+        g2d.fillPolygon(xPointsBottom, yPointsBottom, 3);
+
+        // Draw the sun and moon symbol
+        drawSunAndMoon(g2d, 225, 150, 50, 20);
+    }
+
+    // Helper method to draw the sun and moon symbol
+    private void drawSunAndMoon(Graphics2D g2d, int centerX, int centerY, int radius, int halfMoonRadius) {
+        // Draw sun
+        g2d.setColor(Color.white);
+        g2d.fillOval(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
+
+        // Draw moon (crescent)
+        g2d.setColor(Color.red);
+        g2d.fillArc(centerX - radius, centerY - radius, 2 * radius, 2 * radius, 90, 180);
+
+        // Draw the smaller inner circle for the moon (to create the crescent effect)
+        g2d.setColor(Color.white);
+        g2d.fillOval(centerX - halfMoonRadius, centerY - halfMoonRadius, 2 * halfMoonRadius, 2 * halfMoonRadius);
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Flag of Nepal");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(500, 300);
+        frame.add(new FlagOfNepal());
+        frame.setVisible(true);
+    }
+}

@@ -1,0 +1,32 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class DottedLinesExample extends JPanel {
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+        
+        // Set the stroke to a dotted line
+        float[] dashPattern = {5, 5}; // 5 pixels drawn, 5 pixels gap
+        BasicStroke stroke = new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 1.0f, dashPattern, 0.0f);
+        g2d.setStroke(stroke);
+        
+        // Draw three dotted lines with gaps in between
+        int startY = 50;
+        int lineSpacing = 20;
+        for (int i = 0; i < 3; i++) {
+            int y = startY + i * lineSpacing;
+            g2d.drawLine(50, y, 250, y);
+        }
+    }
+    
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Dotted Lines Example");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 200);
+        frame.add(new DottedLinesExample());
+        frame.setVisible(true);
+    }
+}
